@@ -1,0 +1,10 @@
+roslaunch point_lio mapping_mid360.launch & sleep 12;
+roslaunch livox_ros_driver2 msg_MID360.launch & sleep 8;
+rosrun tf static_transform_publisher 0 0 0.05 0 0 0 world camera_init 10  & sleep 1;
+roslaunch mavros px4.launch & sleep 10;
+roslaunch camera_pose_node liopx4.launch  & sleep 4;
+roslaunch ego_planner single_drone_exp.launch & sleep 10;
+roslaunch ego_planner rviz.launch & sleep 5;
+roslaunch px4ctrl run_ctrl.launch #& sleep 5;
+#roslaunch target_ekf target_ekf.launch
+wait;
